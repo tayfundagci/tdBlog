@@ -26,7 +26,9 @@ function Navbar() {
               <button className='hover:text-red-500'>Logout</button>
             </>
           ) : (
-            <NavLink items={[{ title: 'Login', path: '/login' }]} />
+            <>
+              {/* <NavLink items={[{ title: 'Login', path: '/login' }]} /> */}
+            </>
           )
         }
       </>

@@ -13,7 +13,7 @@ async function BlogDetail({ params }: { params: any }) {
           <h1 className='text-3xl'>{post.title}</h1>
           <p>{post.desc}</p>
           <Suspense fallback={<div>Loading...</div>}>
-            <PostUser userId={post.userId} />
+            <PostUser userId={post.userId} post={post} />
           </Suspense>
         </>
       )}

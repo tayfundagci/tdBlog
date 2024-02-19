@@ -12,9 +12,9 @@ async function Blog() {
     <div>
       {
         posts?.map((post: mdlPost) => (
-          <div key={post.slug} className='p-4 border-b'>
-            <h2>{post.title}</h2>
-            <Link href={`/blog/${post.slug}`}>Read More</Link>
+          <div key={post.slug} >
+            <h2 className='text-3xl'>{post.title}</h2>
+            <Link className='p-4' href={`/blog/${post.slug}`}>Read More</Link>
           </div>
         ))
       }
