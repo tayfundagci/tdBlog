@@ -10,7 +10,7 @@ const PostUser = async ({ userId, post }: { userId: string, post: mdlPost }) => 
   return (
     <div className='p-4 '>
       <h1>{user?.username}</h1>
-      <p className=''>Created At : {moment(post.createdAt).format("DD-MM-YYYY")}</p>
+      <p className=''>Created At : {moment(post.createdAt).format("DD-MM-YYYY HH:mm:ss")}</p>
     </div>
   )
 }
