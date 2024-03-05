@@ -1,6 +1,7 @@
 import { mdlPost } from "@/models/Post";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
+import { unstable_noStore } from "next/cache";
 
 export const getPosts = async () => {
   try {
@@ -53,6 +54,7 @@ export const deletePost = async (id: string) => {
 }
 
 export const getUser = async (id: string) => {
+  unstable_noStore();
   try {
     connectToDb();
     const user = await User.findById(id);

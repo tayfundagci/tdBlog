@@ -1,9 +1,13 @@
 import { createPost, getPosts } from '@/api/data'
 import { mdlPost } from '@/models/Post'
+import { Metadata } from 'next';
 import Link from 'next/link'
 import React from 'react'
 
-
+export const metadata: Metadata = {
+  title: "Blogs",
+  description: "Blog posts about game world"
+};
 
 async function Blog() {
   const posts = await getPosts();
