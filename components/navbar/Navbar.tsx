@@ -12,8 +12,8 @@ import 'react-spring-bottom-sheet/dist/style.css'
 function Navbar() {
   const [open, setOpen] = React.useState<boolean>(false);
 
-  const session = false;
-  const isAdmin = false;
+  const session = true;
+  const isAdmin = true;
 
   const links = () => {
     return (

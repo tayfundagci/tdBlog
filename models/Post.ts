@@ -3,7 +3,7 @@ export interface IPost {
   desc: string
   userId: string
   slug: string
-  createdAt: Date;
+  createdAt?: Date;
   img?: string
 }
 
@@ -13,7 +13,7 @@ export class mdlPost implements IPost {
     public desc: string,
     public userId: string,
     public slug: string,
-    public createdAt: Date,
+    public createdAt?: Date,
     public img?: string,
   ) { }
 }

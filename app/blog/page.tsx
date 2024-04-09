@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 
 async function Blog() {
   const posts = await getPosts();
+  console.log(posts);
 
   return (
-    <div>
+    <div className='flex gap-10'>
       {
         posts?.map((post: mdlPost) => (
           <div key={post.slug} >

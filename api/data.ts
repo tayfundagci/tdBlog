@@ -1,7 +1,7 @@
 import { mdlPost } from "@/models/Post";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
-import { unstable_noStore } from "next/cache";
+import { revalidatePath, unstable_noStore } from "next/cache";
 
 export const getPosts = async () => {
   try {
@@ -28,7 +28,7 @@ export const createPost = async (post: mdlPost) => {
     connectToDb();
     const newPost = new Post(post);
     await newPost.save();
-    return newPost;
+    revalidatePath('/blog');
   } catch (err) {
     console.log(err);
   }
@@ -48,6 +48,7 @@ export const deletePost = async (id: string) => {
   try {
     connectToDb();
     await Post.findByIdAndDelete(id);
+    revalidatePath('/blog');
   } catch (err) {
     console.log(err);
   }
