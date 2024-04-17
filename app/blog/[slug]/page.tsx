@@ -1,14 +1,19 @@
 'use server'
-import { getPost } from '@/api/data';
+import { getPost } from '@/lib/data';
 import PostUser from '@/components/postUser/PostUser'
 import React, { Suspense } from 'react'
 
+const getData = async (slug: string) => {
+  const res = await fetch(`http://localhost:3000/api/blog/first-blog`,);
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+  return res.json();
+}
+
 export const generateMetadata = async ({ params }: { params: any }) => {
   const { slug } = params;
-  console.log(slug);
   const post = await getPost(slug);
-  console.log(post);
-
   if (post != null) {
     return {
       title: post.title,
@@ -18,9 +23,8 @@ export const generateMetadata = async ({ params }: { params: any }) => {
 }
 
 const BlogDetail = async ({ params }: { params: any }) => {
-
   const { slug } = params;
-  const post = await getPost(slug);
+  const post = await getData(slug);
   return (
     <div>
       {post && (

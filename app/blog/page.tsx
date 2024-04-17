@@ -1,4 +1,4 @@
-import { createPost, getPosts } from '@/api/data'
+import { createPost, getPosts } from '@/lib/data'
 import { mdlPost } from '@/models/Post'
 import { Metadata } from 'next';
 import Link from 'next/link'
@@ -9,9 +9,16 @@ export const metadata: Metadata = {
   description: "Blog posts about game world"
 };
 
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/blog", { next: { revalidate: 3600 } });
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+  return res.json();
+}
+
 async function Blog() {
-  const posts = await getPosts();
-  console.log(posts);
+  const posts = await getData();
 
   return (
     <div className='flex gap-10'>

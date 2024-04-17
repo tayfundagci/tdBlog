@@ -1,4 +1,4 @@
-import { getUser } from '@/api/data'
+import { getUser } from '@/lib/data'
 import { mdlPost } from '@/models/Post'
 import { get } from 'http'
 import moment from 'moment'

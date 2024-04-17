@@ -1,4 +1,4 @@
-import { createPost, deletePost } from '@/api/data'
+import { createPost, deletePost } from '@/lib/data'
 import { mdlPost } from '@/models/Post'
 import React from 'react'
 
