@@ -4,7 +4,6 @@ import { Links } from './Links'
 import { handleLogout } from '@/lib/actions'
 
 const NavAuthLink = async (session: any) => {
-  console.log("test", session)
   return (
     <>
       <NavLink items={Links} />
@@ -19,6 +18,7 @@ const NavAuthLink = async (session: any) => {
         ) : (
           <>
             <NavLink items={[{ title: 'Login', path: '/login' }]} />
+            {!session?.user && <NavLink items={[{ title: 'Register', path: '/register' }]} />}
           </>
         )
       }

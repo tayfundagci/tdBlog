@@ -13,8 +13,6 @@ import NavAuthLink from './NavAuthLink'
 
 const Navbar = ({ session }: { session: any }) => {
   const [open, setOpen] = React.useState<boolean>(false);
-  console.log("sessionn", session)
-
 
   return (
     <div className='h-24 flex justify-between items-center'>
