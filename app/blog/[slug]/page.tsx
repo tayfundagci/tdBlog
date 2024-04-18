@@ -4,7 +4,7 @@ import PostUser from '@/components/postUser/PostUser'
 import React, { Suspense } from 'react'
 
 const getData = async (slug: string) => {
-  const res = await fetch(`http://localhost:3000/api/blog/first-blog`,);
+  const res = await fetch(`${window.location.origin}/api/blog/${slug}`,);
   if (!res.ok) {
     throw new Error("Something went wrong");
   }
