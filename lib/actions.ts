@@ -8,12 +8,11 @@ export const handleLogout = async () => {
   await signOut();
 }
 
-export const createUser = async (formData: any) => {
-  "use client"
+export const createUser = async (previousState: any, formData: any) => {
   const { username, email, password, img, passwordRepeat } = Object.fromEntries(formData);
 
   if (password !== passwordRepeat) {
-    return "Passwords do not match!"
+    return { error: "Passwords do not match!" }
   }
 
   try {
@@ -21,7 +20,7 @@ export const createUser = async (formData: any) => {
 
     const user = await User.findOne({ username })
     if (user != null)
-      return "Username already exists"
+      return { error: "Username already exists" }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -33,26 +32,29 @@ export const createUser = async (formData: any) => {
       img: img
     })
     await newUser.save();
-    console.log("saved to db");
+    return { success: true }
 
   } catch (err) {
     console.log(err);
-
+    return { error: "Something went wrong!" }
 
   }
 }
 
-export const userLogin = async (formData: any) => {
+export const userLogin = async (previousState: any, formData: any) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
 
-    await signIn("credentials", {
-      username, password
-    })
+    await signIn("credentials", { username, password })
+    return { success: true }
 
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
+    if (err.message.includes("CredentialsSignin")) {
+      return { error: "Invalid username or password" }
+    }
+    throw err;
   }
 
-}
+} 
